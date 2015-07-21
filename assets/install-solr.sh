@@ -103,7 +103,7 @@ cecho ()
 	echo -e "$color$message"
 
 	# Reset text attributes to normal + without clearing screen.
-	tput sgr0
+	tty -s && tput sgr0
 
 	return
 }
