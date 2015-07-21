@@ -298,8 +298,4 @@ rm -rf apache-tomcat-$TOMCAT_VER.zip
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-cecho "Starting Tomcat." $green
-./tomcat/bin/startup.sh
-
 cecho "Done." $green
-cecho "Now browse to http://localhost:8080/solr/" $green
