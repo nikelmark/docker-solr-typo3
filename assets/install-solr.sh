@@ -4,8 +4,6 @@
 #	sudo ./install-solr.sh
 #	sudo ./install-solr.sh english german french
 
-clear
-
 TOMCAT_VER=6.0.44
 SOLR_VER=3.6.2
 EXT_SOLR_VER=2.8
