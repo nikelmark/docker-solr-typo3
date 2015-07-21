@@ -5,6 +5,8 @@ ADD assets/install-solr.sh /install-solr.sh
 
 RUN /install-solr.sh english german french italian ; echo $?
 
+ADD assets/solr.xml /opt/solr-tomcat/solr/solr.xml
+
 
 EXPOSE 8080
 
