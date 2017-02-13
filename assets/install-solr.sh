@@ -4,12 +4,12 @@
 #	sudo ./install-solr.sh
 #	sudo ./install-solr.sh english german french
 
-TOMCAT_VER=6.0.44
+TOMCAT_VER=6.0.48
 SOLR_VER=3.6.2
 EXT_SOLR_VER=2.8
 EXT_SOLR_PLUGIN_VER=1.2.0
 
-GITBRANCH_PATH="solr_$EXT_SOLR_VER.x"
+GITBRANCH_PATH=2.8.3
 
 # Set default language for cores to download to english, if no commandline parameters are given
 if [ $# -eq 0 ]
@@ -55,9 +55,9 @@ wgetresource ()
 
 	if [ $BRANCH_TEST_RETURN -eq "0" ]
 	then
-		RESOURCE="http://forge.typo3.org/projects/extension-solr/repository/revisions/$GITBRANCH_PATH/raw/resources/"$1
+		RESOURCE="https://raw.githubusercontent.com/TYPO3-Solr/ext-solr/$GITBRANCH_PATH/resources/"$1
 	else
-		RESOURCE="http://forge.typo3.org/projects/extension-solr/repository/revisions/master/raw/resources/"$1
+		RESOURCE="https://raw.githubusercontent.com/TYPO3-Solr/ext-solr/master/resources/"$1
 	fi
 
 	if [ "$2" ]
@@ -195,12 +195,12 @@ cecho "Downloading Apache Solr $SOLR_VER" $green
 wget --progress=bar:force http://archive.apache.org/dist/lucene/solr/$SOLR_VER/apache-solr-$SOLR_VER.zip 2>&1 | progressfilt
 
 cecho "Unpacking Apache Tomcat." $green
-unzip -q apache-tomcat-$TOMCAT_VER.zip
+unzip -q apache-tomcat-$TOMCAT_VER.zip || exit 2
 
 cecho "Unpacking Apache Solr." $green
-unzip -q apache-solr-$SOLR_VER.zip
+unzip -q apache-solr-$SOLR_VER.zip || exit 2
 
-mv apache-tomcat-$TOMCAT_VER tomcat
+mv apache-tomcat-$TOMCAT_VER tomcat || exit 2
 
 cp apache-solr-$SOLR_VER/dist/apache-solr-$SOLR_VER.war tomcat/webapps/solr.war
 cp -r apache-solr-$SOLR_VER/example/solr .
@@ -297,3 +297,4 @@ rm -rf apache-tomcat-$TOMCAT_VER.zip
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 cecho "Done." $green
+exit 0
