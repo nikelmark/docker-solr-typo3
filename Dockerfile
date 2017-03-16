@@ -3,7 +3,7 @@ MAINTAINER Jonas Renggli <jonas.renggli@swisscom.com>
 
 ADD assets/install-solr.sh /install-solr.sh
 
-RUN /install-solr.sh english german french italian ; echo $?
+RUN /install-solr.sh english german french italian
 
 ADD assets/solr.xml /opt/solr-tomcat/solr/solr.xml
 ADD assets/server.xml /opt/solr-tomcat/tomcat/conf/server.xml
